@@ -1,23 +1,16 @@
 let taskArray = [];
 
-var addBtnElement = document.getElementById('addBtn');
-
-addBtnElement.addEventListener('click', function () {
-    //Event listener triggered when the Add Button is clicked
-    console.log('Btn clicked');
-    taskTitle = document.getElementById('taskTitle').value; //reading the task title value from the input field
-    console.log(taskTitle);
-    taskArray.push(taskTitle); //Inserting taskTitle to Array
-    console.log(taskArray);
-    refreshTable();
-})
-
-
 refreshTable = () => {
     //function to refresh the table view based on latest data in taskArray - called after adding or deleting task
     console.log("Refresh called");
     tableBody = document.getElementById('tableBody');
     tableBody.innerHTML = '';
+
+    taskArrayFromLocal = localStorage.getItem('taskArray');
+
+    
+    taskArray = taskArrayFromLocal ? taskArrayFromLocal.split(','): []; // This can cause issues when the task title contains comma
+    console.log(taskArray)
 
     //Loop to create table row for each task
     for (let i = 0; i < taskArray.length; i++) {
@@ -28,10 +21,28 @@ refreshTable = () => {
 
 }
 
-
 deleteTask = (i) => {
     //function called when a task is deleted
-    console.log("Delete called" + i);
+    console.log("Deleting: task id" + i);
     taskArray.splice(i, 1); //function to delete an element in the array at location i;
+    localStorage.setItem('taskArray', taskArray);
     refreshTable();
 }
+
+refreshTable();
+
+
+const addBtn = document.getElementById('addBtn');
+
+addBtn.addEventListener('click', function () {
+    //Event listener triggered when the Add Button is clicked
+    let taskTitle = document.getElementById('taskTitle').value.trim(); //reading the task title value from the input field
+    if(taskTitle){
+        taskArray.push(taskTitle); //Inserting taskTitle to Array
+        localStorage.setItem('taskArray', taskArray);
+        console.log(taskArray);
+        refreshTable();
+    }
+   
+})
+

@@ -9,25 +9,26 @@
 </head>
 
 <body>
-    <h1>ToDo Tracker</h1>
-   
-        <input type="text" id="taskTitle" value="Enter Task">
-        <button id="addBtn">Add</button>
-   
+    <app>
+        <h1>ToDo Tracker</h1>
+        <div class="inputForm">
+            <input type="text" id="taskTitle" value="Enter Task">
+            <button id="addBtn">Add</button>
+        </div>
+        <br>
+        <br>
+        <h4>TO DO LIST</h4>
+        <table>
+            <thead>
+                <th>S.No</td>
+                <th>Task Title</td>
+                <th>Action</td>
+            </thead>
+            <tbody id="tableBody">
 
-    <br>
-    <br>
-   <h4>TO DO LIST</h4>
-    <table>
-        <thead>
-            <th>S.No</td>
-            <th>Task Title</td>
-            <th>Action</td>
-        </thead>
-        <tbody id="tableBody">
-            
-        </tbody>
-    </table>
+            </tbody>
+        </table>
+    </app>
     <script src="script.js"></script>
 </body>
 

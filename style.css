@@ -1,6 +1,14 @@
 table{
     border-collapse: collapse;
+    margin: auto;
+    width: 50%;
 }
 td,th{
     border:solid 1px ;
+}
+app{
+    text-align: center;
+}
+.inputForm{
+    margin: auto;
 }
